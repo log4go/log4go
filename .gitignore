@@ -5,6 +5,9 @@
 *.so
 *.dylib
 
+# Go Debug binary, build by atom package "go-debug"
+debug
+
 # Test binary, build with `go test -c`
 *.test
 

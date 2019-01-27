@@ -16,4 +16,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package log4go
+package core
+
+import (
+	"github.com/log4go/log4go"
+	"github.com/log4go/log4go/spi"
+)
+
+type LoggerContext struct{}
+
+func (ctxt *LoggerContext) GetLogger(name string) (logger spi.Logger, err error) {
+	l := new(Logger)
+	l.name = name
+	l.level = log4go.Level.ALL
+	logger = l
+	return
+}

@@ -17,3 +17,31 @@
  * limitations under the License.
  */
 package log4go
+
+import "github.com/log4go/log4go/spi"
+
+var Level = initLevel()
+
+type level struct {
+	ALL   spi.Level
+	TRACE spi.Level
+	DEBUG spi.Level
+	INFO  spi.Level
+	WARN  spi.Level
+	ERROR spi.Level
+	FATAL spi.Level
+	OFF   spi.Level
+}
+
+func initLevel() *level {
+	lvl := new(level)
+	lvl.ALL = spi.NewStandardLevel(70, "ALL")
+	lvl.TRACE = spi.NewStandardLevel(60, "TRACE")
+	lvl.DEBUG = spi.NewStandardLevel(50, "DEBUG")
+	lvl.INFO = spi.NewStandardLevel(40, "INFO")
+	lvl.WARN = spi.NewStandardLevel(30, "WARN")
+	lvl.ERROR = spi.NewStandardLevel(20, "ERROR")
+	lvl.FATAL = spi.NewStandardLevel(10, "FATAL")
+	lvl.OFF = spi.NewStandardLevel(0, "OFF")
+	return lvl
+}

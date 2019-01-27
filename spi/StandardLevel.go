@@ -16,4 +16,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package log4go
+package spi
+
+type StandardLevel struct {
+	int uint8
+	str string
+}
+
+func (stdlvl *StandardLevel) Int() uint8 {
+	return stdlvl.int
+}
+
+func (stdlvl *StandardLevel) String() string {
+	return stdlvl.str
+}
+
+func (stdlvl *StandardLevel) Equal(other Level) bool {
+	if stdlvl.Int() == other.Int() {
+		return true
+	} else {
+		return false
+	}
+}
+
+func (stdlvl *StandardLevel) GreaterOrEqual(other Level) bool {
+	if stdlvl.Int() >= other.Int() {
+		return true
+	} else {
+		return false
+	}
+}
+
+func NewStandardLevel(int uint8, str string) *StandardLevel {
+	stdlvl := new(StandardLevel)
+	stdlvl.int = int
+	stdlvl.str = str
+	return stdlvl
+}

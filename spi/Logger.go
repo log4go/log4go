@@ -16,4 +16,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package log4go
+package spi
+
+type Logger interface {
+	Log(level Level, messages ...string) error
+	IsEnabled(level Level) bool
+	Trace(messages ...string) error
+	IsTraceEnabled() bool
+	Debug(messages ...string) error
+	IsDebugEnabled() bool
+	Info(messages ...string) error
+	IsInfoEnabled() bool
+	Warn(messages ...string) error
+	IsWarnEnabled() bool
+	Error(messages ...string) error
+	IsErrorEnabled() bool
+	Fatal(messages ...string) error
+	IsFatalEnabled() bool
+}

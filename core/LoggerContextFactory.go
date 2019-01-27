@@ -16,4 +16,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package log4go
+package core
+
+import (
+	"github.com/log4go/log4go"
+	"github.com/log4go/log4go/spi"
+)
+
+const LOGGER_CONTEXT_FACTORY_NAME = "CoreLoggerContextFactory"
+
+func init() {
+	log4go.LogManager.AddLoggerContextFactory(LOGGER_CONTEXT_FACTORY_NAME, new(LoggerContextFactory))
+	log4go.LogManager.SetLoggerContextFactory(LOGGER_CONTEXT_FACTORY_NAME)
+}
+
+type LoggerContextFactory struct{}
+
+func (lcf *LoggerContextFactory) GetContext(fqcn string) (ctxt spi.LoggerContext, err error) {
+	ctxt = new(LoggerContext)
+	return
+}

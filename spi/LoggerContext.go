@@ -16,4 +16,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package log4go
+package spi
+
+type LoggerContext interface {
+	GetLogger(name string) (Logger, error)
+}
